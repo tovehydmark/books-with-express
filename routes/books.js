@@ -5,11 +5,16 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
 
-    let allBooksPrinted = `
+    // for (let i = 0; i < libraryBooks.length; i++) {
 
-`
 
-    res.send()
+    // }
+
+    //     let allBooksPrinted = `
+
+    // `
+
+    res.send(libraryBooks)
 })
 
 
