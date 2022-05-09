@@ -1,3 +1,18 @@
+//Lista alla böcker som finns i biblioteket
+var express = require('express');
+var router = express.Router();
+
+
+router.get('/', function (req, res) {
+
+    let allBooksPrinted = `
+
+`
+
+    res.send()
+})
+
+
 //Hantera böckerna med en global object array i denna publika mapp "books.js" 
 let libraryBooks = [{
         "title": "Harry Potter",
@@ -28,3 +43,8 @@ let libraryBooks = [{
         "onLoan": false
     }
 ]
+
+
+
+
+module.exports = router;

@@ -1,19 +1,24 @@
 var express = require('express');
+const app = require('../app');
 var router = express.Router();
+
+//VARFÖR GENERERAS DET UNDER ÄVEN NÄR DET ÄR UTKOMMENTERAT??//
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Express'
+    title: 'Biblioteket'
   });
 });
 
 
-
-//Alla vyer skapas och genereras server side
+// router.get('/books', function (req, res) {
+//   res.send("hej från books router")
+// })
 
 //Lista alla böcker som finns i biblioteket
 //På root-sidan ska alla böcker visas med namn + utlånestatus (true/false) + länk till sidan "lägg till en ny bok"
+
 
 //visa info om en specifik bok
 //På böckernas infosida: namn, författare, antal sidor + utlånestatus + länk för att låna boken
