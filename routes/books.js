@@ -5,16 +5,21 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
 
-    // for (let i = 0; i < libraryBooks.length; i++) {
+    let allBooks;
+
+    libraryBooks.forEach(book => {
+        allBooks += `
+        <article>
+        <h2>Titel: ${book.title}</h2>
+        <p>Författare: ${book.authorFirstName + book.authorLastName}</p>
+        <p>Antal sidor: ${book.numberOfPages}</p>
+        <p>Utlånad: ${book.onLoan}</p>
+      </article>
+        `
+    });
 
 
-    // }
-
-    //     let allBooksPrinted = `
-
-    // `
-
-    res.send(libraryBooks)
+    res.send(allBooks)
 })
 
 
