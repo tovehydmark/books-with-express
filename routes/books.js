@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
         <article>
         <h2>Titel: ${book.title}</h2>
         <p>Utlånad: ${book.onLoan}</p>
-        <a href="http://localhost:3000/books/${book.bookId}">Visa mer info om boken</a>
+        <a href="http://localhost:3000/books/bookinfo/${book.bookId}">Visa mer info om boken</a>
       </article>
         `
     });
@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
 
 
 //When clicking the link, the information on the specific book is shown on separate url
-router.get('/:bookid', function (req, res) {
+router.get('/bookinfo/:bookid', function (req, res) {
 
     let showBook = libraryBooks.find((book) => book.bookId == req.params.bookid);
 
@@ -44,6 +44,9 @@ router.get('/:bookid', function (req, res) {
     res.send(chosenBook)
 })
 
+
+
+//Link to lend the book. When clicked, the books status onLoan goes from false to true on start page
 router.get('/lend/:bookId', function (req, res) {
     let showBook = libraryBooks.find((book) => book.bookId == req.params.bookId);
 
@@ -55,7 +58,54 @@ router.get('/lend/:bookId', function (req, res) {
 })
 
 
-//Link to borrow the book on book info page
+
+
+//Add new book with post
+router.get('/addbook', function (req, res) {
+
+    let addBook = `
+    
+  <h1>Registrera ny bok i biblioteket</h1>
+
+  <form action="addbook" method="post">
+    <label for="title">Bokens titel: </label>
+    <input type="text" name="title" id="title">
+
+    <label for="authorFirstName">Författarens förnamn</label>
+    <input type="text" name="authorFirstName" id="authorFirstName">
+
+    <label for="authorLastName">Författarens efternamn: </label>
+    <input type="text" name="authorLastName" id="authorLastName">
+
+    <label for="numberOfPages">Sidantal: </label>
+    <input type="text" name="numberOfPages" id="numberOfPages">
+
+    <button id="saveNewBookBtn">Spara</button>
+  </form>`
+
+    res.send(addBook)
+})
+
+
+router.post('/addbook', function (req, res) {
+
+    let newBook = {
+        "title": req.body.title,
+        "authorFirstName": req.body.authorFirstName,
+        "authorLastName": req.body.authorLastName,
+        "numberOfPages": req.body.numberOfPages,
+        "bookId": rand.generate(),
+        "onLoan": false
+
+    }
+
+    libraryBooks.push(newBook)
+    console.log(libraryBooks);
+
+    res.send("Boken " + req.body.title + " har lagts till i biblioteket.")
+
+})
+
 
 //Hantera böckerna med en global object array i denna publika mapp "books.js" 
 let libraryBooks = [{

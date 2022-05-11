@@ -22,8 +22,8 @@ router.get('/', function (req, res, next) {
 //låna en bok (via en get route)
 
 //lägga till en ny bok (via en post)
-
 //Formulär via vilket vi kan lägga till en ny bok i biblioteket (dvs pusha till vår globala variabel i detta fallet)
+
 
 //Hantera böckerna med en global array i books.js
 
