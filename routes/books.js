@@ -16,10 +16,18 @@ router.get('/', function (req, res) {
     let addNewBook = "<a href='http://localhost:3000/books/addbook'>Lägg till en ny bok i systemet</a>"
 
     libraryBooks.forEach(book => {
+
+        let lendingStatus;
+        if (book.onLoan == false) {
+            lendingStatus = "Boken är tillgänglig"
+        } else {
+            lendingStatus = "Boken är utlånad"
+        }
+
         allBooks += `
         <article>
         <h2>Titel: ${book.title}</h2>
-        <p>Utlånad: ${book.onLoan}</p>
+        <p>Lånestatus: ${lendingStatus}</p>
         <a href="http://localhost:3000/books/bookinfo/${book.bookId}">Visa mer info om boken</a>
       </article>
         `
