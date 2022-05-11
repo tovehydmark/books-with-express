@@ -1,33 +1,42 @@
-[{
+[
+  {
     "title": "Harry Potter och den Flammande Bägaren",
     "authorFirstName": "J.K.",
     "authorLastName": "Rowling",
     "numberOfPages": 900,
-    "bookId": "rand.generate()",
+    "bookId": "46f52dd56ggg",
     "onLoan": false
-},
-{
+  },
+  {
     "title": "Where the Rain is Born",
     "authorFirstName": "Anita",
     "authorLastName": "Nair",
     "numberOfPages": 297,
-    "bookId": "rand.generate()",
+    "bookId": "46ijs7dho6gegg",
     "onLoan": false
-},
-{
+  },
+  {
     "title": "Tears of the Giraffe",
     "authorFirstName": "Alexander",
     "authorLastName": "McCall Smith",
     "numberOfPages": 217,
-    "bookId": "rand.generate()",
+    "bookId": "okfhs754nd9wg4",
     "onLoan": false
-},
-{
+  },
+  {
     "title": "The Kite Runner",
     "authorFirstName": "Khaled",
     "authorLastName": "Hosseini",
     "numberOfPages": 371,
-    "bookId": "rand.generate()",
+    "bookId": "dj7jg56hk39shfy",
     "onLoan": false
-}
+  },
+  {
+    "title": "ko",
+    "authorFirstName": "ko",
+    "authorLastName": "ko",
+    "numberOfPages": "ko",
+    "bookId": "0OTGMFCAM1z9MmA1",
+    "onLoan": false
+  }
 ]
