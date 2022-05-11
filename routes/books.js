@@ -91,6 +91,10 @@ router.get('/lend/:bookId', function (req, res) {
 
     fs.readFile("books.json", function (err, data) {
 
+        if (err) {
+            console.log(err);
+        }
+
         const books = JSON.parse(data)
 
         let showBook = books.find((book) => book.bookId == req.params.bookId);
@@ -99,7 +103,15 @@ router.get('/lend/:bookId', function (req, res) {
             return res.send("Det finns ingen bok med id " + showBook.bookId)
         }
 
-        showBook.onLoan = true
+        showBook.onLoan = true;
+
+        //Updates json file so book availability changes
+        fs.writeFile("books.json", JSON.stringify(books, null, 2), function (err) {
+            if (err) {
+                console.log(err);
+            }
+        })
+
         res.send("Du har nu lånat boken " + showBook.title + backToStartPage)
     })
 
@@ -135,7 +147,7 @@ router.get('/addbook', function (req, res) {
 
 
 
-//Add new book with post
+//Add new book with post to json file
 router.post('/addbook', function (req, res) {
 
     fs.readFile("books.json", function (err, data) {

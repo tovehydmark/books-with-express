@@ -5,7 +5,7 @@
     "authorLastName": "Rowling",
     "numberOfPages": 900,
     "bookId": "46f52dd56ggg",
-    "onLoan": false
+    "onLoan": true
   },
   {
     "title": "Where the Rain is Born",
@@ -21,7 +21,7 @@
     "authorLastName": "McCall Smith",
     "numberOfPages": 217,
     "bookId": "okfhs754nd9wg4",
-    "onLoan": false
+    "onLoan": true
   },
   {
     "title": "The Kite Runner",
@@ -37,6 +37,6 @@
     "authorLastName": "ko",
     "numberOfPages": "ko",
     "bookId": "0OTGMFCAM1z9MmA1",
-    "onLoan": false
+    "onLoan": true
   }
 ]
