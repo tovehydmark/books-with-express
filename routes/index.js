@@ -12,10 +12,6 @@ router.get('/', function (req, res, next) {
 });
 
 
-// router.get('/books', function (req, res) {
-//   res.send("hej från books router")
-// })
-
 //Lista alla böcker som finns i biblioteket
 //På root-sidan ska alla böcker visas med namn + utlånestatus (true/false) + länk till sidan "lägg till en ny bok"
 
