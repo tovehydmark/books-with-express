@@ -93,6 +93,7 @@ router.get('/lend/:bookId', function (req, res) {
 
         if (err) {
             console.log(err);
+
         }
 
         const books = JSON.parse(data)
@@ -172,6 +173,29 @@ router.post('/addbook', function (req, res) {
         fs.writeFile("books.json", JSON.stringify(books, null, 2), function (err) {
             if (err) {
                 console.log(err);
+                //Error handling in case the json-file does not exist
+                if (err.code == "ENOENT") {
+
+                    console.log("Filen finns inte");
+
+                    let book = [{
+                        "title": req.body.title,
+                        "authorFirstName": req.body.authorFirstName,
+                        "authorLastName": req.body.authorLastName,
+                        "numberOfPages": req.body.numberOfPages,
+                        "bookId": rand.generate(),
+                        "onLoan": false
+                    }]
+
+                    fs.writeFile("books.json", JSON.stringify(book, null, 2), function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    })
+                    res.send("JSON-fil skapad och boken sparad");
+                    return;
+                }
+                res.send("404-Något gick fel!")
             }
         })
 
