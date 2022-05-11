@@ -6,10 +6,14 @@ const {
 var router = express.Router();
 var rand = require("random-key")
 
+
+let backToStartPage = "<a href='http://localhost:3000/books/'>Tillbaka till startsidan</a>"
+
 //Gets all books in library and prints them on page
 router.get('/', function (req, res) {
 
-    let allBooks;
+    let allBooks = "<h1>Bibliotekets alla böcker: </h1>"
+    let addNewBook = "<a href='http://localhost:3000/books/addbook'>Lägg till en ny bok i systemet</a>"
 
     libraryBooks.forEach(book => {
         allBooks += `
@@ -21,11 +25,11 @@ router.get('/', function (req, res) {
         `
     });
 
-    res.send(allBooks)
+    res.send(allBooks + addNewBook)
 })
 
 
-//When clicking the link, the information on the specific book is shown on separate url
+//Information on the specific book chosen is shown on separate url
 router.get('/bookinfo/:bookid', function (req, res) {
 
     let showBook = libraryBooks.find((book) => book.bookId == req.params.bookid);
@@ -41,7 +45,7 @@ router.get('/bookinfo/:bookid', function (req, res) {
     <p>Utlånad: ${showBook.onLoan}</p>
     <a href="http://localhost:3000/books/lend/${showBook.bookId}">Låna boken</a>`
 
-    res.send(chosenBook)
+    res.send(chosenBook + backToStartPage)
 })
 
 
@@ -54,13 +58,13 @@ router.get('/lend/:bookId', function (req, res) {
         return res.send("Det finns ingen bok med id " + showBook.bookId)
     }
     showBook.onLoan = true
-    res.send("Du har nu lånat boken " + showBook.title)
+    res.send("Du har nu lånat boken " + showBook.title + backToStartPage)
 })
 
 
 
 
-//Add new book with post
+//Create add new book page form
 router.get('/addbook', function (req, res) {
 
     let addBook = `
@@ -83,10 +87,13 @@ router.get('/addbook', function (req, res) {
     <button id="saveNewBookBtn">Spara</button>
   </form>`
 
-    res.send(addBook)
+    res.send(addBook + backToStartPage)
 })
 
 
+
+
+//Add new book with post
 router.post('/addbook', function (req, res) {
 
     let newBook = {
@@ -100,14 +107,14 @@ router.post('/addbook', function (req, res) {
     }
 
     libraryBooks.push(newBook)
-    console.log(libraryBooks);
 
-    res.send("Boken " + req.body.title + " har lagts till i biblioteket.")
+    res.send("Boken " + req.body.title + " har lagts till i biblioteket." + backToStartPage)
 
 })
 
 
-//Hantera böckerna med en global object array i denna publika mapp "books.js" 
+
+//Library books 
 let libraryBooks = [{
         "title": "Harry Potter",
         "authorFirstName": "J.K.",
